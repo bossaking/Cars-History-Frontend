@@ -1,0 +1,211 @@
+<div fxLayout="column" fxLayoutGap="10" >
+
+  <div fxLayout="row">
+    <div class="card">
+
+      <mat-tab-group mat-stretch-tabs dynamicHeight disableRipple color="warn">
+
+        <mat-tab label="Użytkownik">
+          <div class="form-area" fxLayout="column">
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                 fxLayout.xs="column">
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Imię</mat-label>
+                <input matInput placeholder="Jan" required>
+                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Nazwisko</mat-label>
+                <input matInput placeholder="Kowalski" required>
+                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                 fxLayout.xs="column">
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Adres e-mail</mat-label>
+                <input matInput placeholder="j.kowalski@o2.pl" required>
+                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                 fxLayout.xs="column">
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Hasło</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput [type]="hideRepeat ? 'password' : 'text'" required>
+                <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hideRepeat">
+                  <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+
+            </div>
+
+            <div fxLayoutAlign="center">
+              <button mat-raised-button color="accent" fxFlex="30" fxFlex.lg="30" fxFlex.md="50" fxFlex.sm="100"
+                      fxFlex.xs="100">Rejestracja
+              </button>
+            </div>
+
+          </div>
+        </mat-tab>
+        <mat-tab label="Mechanik">
+
+          <div class="form-area">
+            <mat-stepper [disableRipple]="true" [linear]="true" [orientation]="orientation" #stepper>
+              <mat-step [editable]="true">
+                <form>
+                  <ng-template matStepLabel>
+                    <div class="label">Dane użytkownika</div></ng-template>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Imię</mat-label>
+                      <input matInput placeholder="Jan" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Nazwisko</mat-label>
+                      <input matInput placeholder="Kowalski" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Adres e-mail</mat-label>
+                      <input matInput placeholder="j.kowalski@o2.pl" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Hasło</mat-label>
+                      <input matInput [type]="hide ? 'password' : 'text'" required>
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Powtórz hasło</mat-label>
+                      <input matInput [type]="hideRepeat ? 'password' : 'text'" required>
+                      <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hideRepeat">
+                        <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout fxLayoutAlign="end">
+                    <button fxFlex.xs="100" fxFlex.sm="100" type="button" mat-stroked-button color="accent" matStepperNext>Dalej</button>
+                  </div>
+
+                </form>
+              </mat-step>
+              <mat-step [editable]="true">
+                <form >
+                  <ng-template matStepLabel>Dane firmy</ng-template>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Nazwa firmy</mat-label>
+                      <input matInput placeholder="Warsztat samochodowy 'U dziadka'" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Miasto</mat-label>
+                      <input matInput placeholder="Warszawa" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Adres</mat-label>
+                      <input matInput placeholder="Belwederska 23" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+                       fxLayout.xs="column">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>Regon</mat-label>
+                      <input matInput placeholder="23454321" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                      <mat-label>NIP</mat-label>
+                      <input matInput placeholder="234543123" required>
+                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                    </mat-form-field>
+
+                  </div>
+
+                  <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10" fxLayoutAlign="end">
+                    <button type="button" mat-stroked-button color="warn" matStepperPrevious>Wstecz</button>
+                    <button type="submit" mat-raised-button color="accent" matStepperNext>Rejestracja</button>
+                  </div>
+                </form>
+              </mat-step>
+
+            </mat-stepper>
+          </div>
+
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+  </div>
+
+  <div class="question" fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center">
+    <span>Masz już konto?</span>
+    <a href="#">Zaloguj się</a>
+  </div>
+
+</div>

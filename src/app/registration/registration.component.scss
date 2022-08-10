@@ -1,0 +1,57 @@
+.mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: red;
+  font-weight: 700;
+}
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+  color: #598bbb;
+  font-family: 'Alata', sans-serif;
+  text-transform: uppercase;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active{
+  color: #2b363d;
+  font-family: 'Alata', sans-serif;
+}
+
+.card{
+  padding: 1rem;
+  box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+border-radius: 5px;
+  background-color: white;
+}
+
+.form-area{
+  margin-top: 1rem;
+}
+
+.question a{
+  color: #598bbb;
+}
+
+.question a:hover{
+  color: #2b363d;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #598bbb !important;
+}
+
+::ng-deep .mat-step-header .mat-step-header-ripple{
+  display: none !important;
+}
+
+::ng-deep mat-step-header:hover{
+  background: none !important;
+}
+::ng-deep .mat-step-header[aria-selected="true"]  {
+  background: none !important;
+}
