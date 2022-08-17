@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutGap="10">
+
+  <div fxLayout="row" >
+    <div class="card" fxFlex="100">
+
+      <form class="form-area" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="login()" fxFlex="100">
+
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Adres e-mail</mat-label>
+            <input matInput placeholder="j.kowalski@o2.pl" required formControlName="email">
+            <mat-error
+              *ngIf="loginForm.controls['email'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['email'].errors?.['notExist']">{{getWrongEmailError()}}</mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['email'].errors?.['inactive']">{{getInactiveUserError()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Hasło</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="loginForm.controls['password'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['password'].errors?.['mismatch']">{{getMismatchPasswordError()}}</mat-error>
+          </mat-form-field>
+
+        <div fxLayoutAlign="center">
+          <button type="submit" mat-raised-button color="accent" fxFlex="50" fxFlex.lg="50" fxFlex.md="50"
+                  fxFlex.sm="100"
+                  fxFlex.xs="100">Zaloguj się
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="question" fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center">
+    <span>Nie masz jeszcze konta?</span>
+    <a routerLink="/register">Zarejestruj się</a>
+  </div>
+
+</div>

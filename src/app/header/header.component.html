@@ -1,9 +1,31 @@
-<div class="header" fxLayout="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutAlign="space-between" fxLayoutGap.xs="10" fxLayoutGap.sm="10">
+<div class="header" fxLayout="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+     fxLayoutAlign="space-between" fxLayoutGap.xs="10" fxLayoutGap.sm="10">
 
-  <a href="#" class="title" fxFlexAlign.xs="center" fxFlexAlign.sm="center">Historia samochodu</a>
+  <a routerLink="/" class="title" fxFlexAlign.xs="center" fxFlexAlign.sm="center">Historia samochodu</a>
 
   <div class="right-side-links" fxFlexAlign.xs="center" fxFlexAlign.sm="center">
-    <a routerLink="register">Zaloguj się</a>
+    <ng-template [ngIf]="authService.isLoggedIn()" [ngIfThen]="user" [ngIfElse]="signIn"></ng-template>
   </div>
 
 </div>
+
+
+<ng-template #signIn>
+  <a routerLink="login">Zaloguj się</a>
+</ng-template>
+
+<ng-template #user>
+
+  <div class="user-menu" [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutGap="10" fxLayoutAlign="center center">
+    <span>{{authService.getUser()?.name}} {{authService.getUser()?.surname}}</span>
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Wyloguj</span>
+    </button>
+  </mat-menu>
+
+</ng-template>

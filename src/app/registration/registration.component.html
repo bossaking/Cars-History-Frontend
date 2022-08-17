@@ -1,26 +1,30 @@
-<div fxLayout="column" fxLayoutGap="10" >
+<div fxLayout="column" fxLayoutGap="10">
 
+  <ng-template [ngIf]="mechanicRegistered" [ngIfThen]="registered" [ngIfElse]="form"></ng-template>
+
+</div>
+
+<ng-template #form>
   <div fxLayout="row">
     <div class="card">
-
       <mat-tab-group mat-stretch-tabs dynamicHeight disableRipple color="warn">
 
         <mat-tab label="Użytkownik">
-          <div class="form-area" fxLayout="column">
+          <form class="form-area" fxLayout="column" [formGroup]="userForm" (ngSubmit)="registerUser()">
 
             <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
                  fxLayout.xs="column">
 
               <mat-form-field appearance="outline" fxFlex="100">
                 <mat-label>Imię</mat-label>
-                <input matInput placeholder="Jan" required>
-                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                <input matInput placeholder="Jan" required formControlName="name">
+                <mat-error *ngIf="userForm.controls['name'].invalid">{{getRequiredErrorMessage()}}</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" fxFlex="100">
                 <mat-label>Nazwisko</mat-label>
-                <input matInput placeholder="Kowalski" required>
-                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                <input matInput placeholder="Kowalski" required formControlName="surname">
+                <mat-error *ngIf="userForm.controls['surname'].invalid">{{getRequiredErrorMessage()}}</mat-error>
               </mat-form-field>
 
             </div>
@@ -30,8 +34,13 @@
 
               <mat-form-field appearance="outline" fxFlex="100">
                 <mat-label>Adres e-mail</mat-label>
-                <input matInput placeholder="j.kowalski@o2.pl" required>
-                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                <input matInput placeholder="j.kowalski@o2.pl" required formControlName="email">
+                <mat-error
+                  *ngIf="userForm.controls['email'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                <mat-error
+                  *ngIf="userForm.controls['email'].errors?.['email']">{{getInvalidEmailErrorMessage()}}</mat-error>
+                <mat-error
+                  *ngIf="userForm.controls['email'].errors?.['taken']">{{getTakenEmailError()}}</mat-error>
               </mat-form-field>
 
             </div>
@@ -41,56 +50,62 @@
 
               <mat-form-field appearance="outline" fxFlex="100">
                 <mat-label>Hasło</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" required>
+                <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
+                        [attr.aria-pressed]="hide" type="button">
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                <mat-error *ngIf="userForm.controls['password'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                <mat-error *ngIf="userForm.controls['password'].errors?.['minlength']">{{getPasswordMinLengthErrorMessage()}}</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="outline" fxFlex="100">
                 <mat-label>Powtórz hasło</mat-label>
-                <input matInput [type]="hideRepeat ? 'password' : 'text'" required>
+                <input matInput [type]="hideRepeat ? 'password' : 'text'" required formControlName="repeatPassword">
                 <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hideRepeat">
+                        [attr.aria-pressed]="hideRepeat" type="button">
                   <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                <mat-error
+                  *ngIf="userForm.controls['repeatPassword'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                <mat-error
+                  *ngIf="userForm.controls['repeatPassword'].errors?.['matchPasswords']">{{getMismatchPasswordsError()}}</mat-error>
               </mat-form-field>
 
             </div>
 
             <div fxLayoutAlign="center">
-              <button mat-raised-button color="accent" fxFlex="30" fxFlex.lg="30" fxFlex.md="50" fxFlex.sm="100"
+              <button type="submit" mat-raised-button color="accent" fxFlex="30" fxFlex.lg="30" fxFlex.md="50"
+                      fxFlex.sm="100"
                       fxFlex.xs="100">Rejestracja
               </button>
             </div>
 
-          </div>
+          </form>
         </mat-tab>
         <mat-tab label="Mechanik">
 
           <div class="form-area">
             <mat-stepper [disableRipple]="true" [linear]="true" [orientation]="orientation" #stepper>
-              <mat-step [editable]="true">
-                <form>
+              <mat-step [editable]="true" [stepControl]="mechanicForm">
+                <form [formGroup]="mechanicForm">
                   <ng-template matStepLabel>
-                    <div class="label">Dane użytkownika</div></ng-template>
+                    <div class="label">Dane użytkownika</div>
+                  </ng-template>
 
                   <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
                        fxLayout.xs="column">
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Imię</mat-label>
-                      <input matInput placeholder="Jan" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="Jan" required formControlName="name">
+                      <mat-error *ngIf="mechanicForm.controls['name'].invalid">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Nazwisko</mat-label>
-                      <input matInput placeholder="Kowalski" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="Kowalski" required formControlName="surname">
+                      <mat-error *ngIf="mechanicForm.controls['surname'].invalid">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -100,8 +115,13 @@
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Adres e-mail</mat-label>
-                      <input matInput placeholder="j.kowalski@o2.pl" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="j.kowalski@o2.pl" required formControlName="email">
+                      <mat-error
+                        *ngIf="mechanicForm.controls['email'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                      <mat-error
+                        *ngIf="mechanicForm.controls['email'].errors?.['email']">{{getInvalidEmailErrorMessage()}}</mat-error>
+                      <mat-error
+                        *ngIf="mechanicForm.controls['email'].errors?.['taken']">{{getTakenEmailError()}}</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -111,34 +131,42 @@
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Hasło</mat-label>
-                      <input matInput [type]="hide ? 'password' : 'text'" required>
+                      <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
                       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                              [attr.aria-pressed]="hide">
+                              [attr.aria-pressed]="hide" type="button">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                       </button>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <mat-error *ngIf="mechanicForm.controls['password'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                      <mat-error *ngIf="mechanicForm.controls['password'].errors?.['minlength']">{{getPasswordMinLengthErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Powtórz hasło</mat-label>
-                      <input matInput [type]="hideRepeat ? 'password' : 'text'" required>
-                      <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'"
-                              [attr.aria-pressed]="hideRepeat">
+                      <input matInput [type]="hideRepeat ? 'password' : 'text'" required formControlName="repeatPassword">
+                      <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat"
+                              [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hideRepeat" type="button">
                         <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
                       </button>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <mat-error
+                        *ngIf="mechanicForm.controls['repeatPassword'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+                      <mat-error
+                        *ngIf="mechanicForm.controls['repeatPassword'].errors?.['matchPasswords']">{{getMismatchPasswordsError()}}</mat-error>
                     </mat-form-field>
 
                   </div>
 
                   <div fxLayout fxLayoutAlign="end">
-                    <button fxFlex.xs="100" fxFlex.sm="100" type="button" mat-stroked-button color="accent" matStepperNext>Dalej</button>
+                    <button fxFlex.xs="100" fxFlex.sm="100" type="button" mat-stroked-button color="accent"
+                            matStepperNext>Dalej
+                    </button>
                   </div>
 
                 </form>
               </mat-step>
-              <mat-step [editable]="true">
-                <form >
+
+              <mat-step [editable]="true" [stepControl]="firmForm">
+                <form [formGroup]="firmForm" (ngSubmit)="registerMechanic()">
                   <ng-template matStepLabel>Dane firmy</ng-template>
 
                   <div fxLayout="row" fxLayoutGap="10" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
@@ -146,8 +174,9 @@
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Nazwa firmy</mat-label>
-                      <input matInput placeholder="Warsztat samochodowy 'U dziadka'" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="Warsztat samochodowy 'U dziadka'" required formControlName="title">
+                      <mat-error
+                        *ngIf="firmForm.controls['title'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -157,14 +186,16 @@
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Miasto</mat-label>
-                      <input matInput placeholder="Warszawa" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="Warszawa" required formControlName="city">
+                      <mat-error
+                        *ngIf="firmForm.controls['city'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Adres</mat-label>
-                      <input matInput placeholder="Belwederska 23" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="Belwederska 23" required formControlName="address">
+                      <mat-error
+                        *ngIf="firmForm.controls['address'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -174,14 +205,16 @@
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>Regon</mat-label>
-                      <input matInput placeholder="23454321" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="23454321" required formControlName="regon">
+                      <mat-error
+                        *ngIf="firmForm.controls['regon'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" fxFlex="100">
                       <mat-label>NIP</mat-label>
-                      <input matInput placeholder="234543123" required>
-                      <!--            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                      <input matInput placeholder="234543123" required formControlName="nip">
+                      <mat-error
+                        *ngIf="firmForm.controls['nip'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -205,7 +238,13 @@
 
   <div class="question" fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center">
     <span>Masz już konto?</span>
-    <a href="#">Zaloguj się</a>
+    <a routerLink="/login">Zaloguj się</a>
   </div>
+</ng-template>
 
-</div>
+<ng-template #registered>
+  <div class="card registered" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10">
+    <span>Dziękujemy za rejestrację w naszym serwisie!</span>
+    <p>Kiedy twoje konto zostanie aktywowane przez administratora, wyślemy powiadomienie na podany przez Ciebie adres e-mail</p>
+  </div>
+</ng-template>

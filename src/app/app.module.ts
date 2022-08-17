@@ -17,12 +17,21 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatStepperModule} from '@angular/material/stepper';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatchPasswordDirective} from "./shared/match-password.directive";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import {MatMenuModule} from "@angular/material/menu";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MatchPasswordDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,11 +44,21 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatIconModule,
     MatFormFieldModule,
     RouterModule.forRoot([
-      {path: 'register', component: RegistrationComponent}
+      {path: 'register', component: RegistrationComponent},
+      {path: 'login', component: LoginComponent}
     ]),
     MatInputModule,
     MatButtonModule,
-    MatStepperModule
+    MatStepperModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
