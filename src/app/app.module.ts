@@ -30,6 +30,10 @@ import { RegistrationRequestsComponent } from './registration-requests/registrat
 import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 import { FuelTypesComponent } from './fuel-types/fuel-types.component';
 import {AuthInterceptorService} from "./services/interceptors/auth-interceptor.service";
+import { NewFuelTypeDialogComponent } from './new-fuel-type-dialog/new-fuel-type-dialog.component';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
+import { EditFuelTypeDialogComponent } from './edit-fuel-type-dialog/edit-fuel-type-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import {AuthInterceptorService} from "./services/interceptors/auth-interceptor.s
     UsersComponent,
     RegistrationRequestsComponent,
     ManufacturersComponent,
-    FuelTypesComponent
+    FuelTypesComponent,
+    NewFuelTypeDialogComponent,
+    ConfirmDeleteDialogComponent,
+    EditFuelTypeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +99,7 @@ import {AuthInterceptorService} from "./services/interceptors/auth-interceptor.s
       preventDuplicates: true,
     }),
     MatMenuModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

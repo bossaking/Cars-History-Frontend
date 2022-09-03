@@ -5,6 +5,7 @@ export class Globals {
   public static passwordsMismatchError: string = "Hasła się nie zgadzają";
 
   public static takenEmailError: string = "Użytkownik o podanym adresie email już istnieje";
+  public static takenFieldError: string = "Rekord o podanej nazwie już istnieje";
 
   public static wrongPassword: string = "Niepoprawne hasło";
   public static wrongEmail:string = "Użytkownik o podanym adresie email nie istnieje";

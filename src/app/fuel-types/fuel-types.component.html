@@ -5,7 +5,7 @@
   </div>
 
   <div>
-    <button mat-button mat-raised-button color="primary" fxFlex="20" fxFlex.xs="100">Dodaj nowy</button>
+    <button mat-button mat-raised-button color="primary" fxFlex="20" fxFlex.xs="100" (click)="newFuelType()">Dodaj nowy</button>
   </div>
 
 </div>
@@ -20,11 +20,11 @@
 
     <div fxLayout="row" fxLayoutAlign="end" fxFlex="100">
 
-      <button mat-icon-button>
+      <button mat-icon-button (click)="editFuelType(fuelType)">
       <mat-icon color="primary">edit</mat-icon>
       </button>
 
-      <button mat-icon-button>
+      <button mat-icon-button (click)="removeFuelType(fuelType.id)">
         <mat-icon color="warn">delete</mat-icon>
       </button>
 

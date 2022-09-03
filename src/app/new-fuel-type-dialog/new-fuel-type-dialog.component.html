@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Nowy rodzaj paliwa</h1>
+
+<div matDialogContent>
+
+  <form fxLayout="column" [formGroup]="newFuelTypeForm" (ngSubmit)="addNewFuelType()">
+
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Nazwa</mat-label>
+      <input matInput placeholder="Benzyna" required formControlName="name">
+          <mat-error *ngIf="newFuelTypeForm.controls['name'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+      <mat-error
+        *ngIf="newFuelTypeForm.controls['name'].errors?.['taken']">{{getTakenNameError()}}</mat-error>
+    </mat-form-field>
+
+
+    <div fxLayout="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10" fxLayoutAlign="end center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start">
+
+      <button type="submit" mat-button mat-raised-button color="primary">Dodaj</button>
+      <button type="button" mat-button mat-stroked-button color="warn" [mat-dialog-close]="false">Anuluj</button>
+
+    </div>
+
+  </form>
+
+</div>

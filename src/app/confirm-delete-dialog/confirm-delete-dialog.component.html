@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Potwierdzenie usunięcia</h1>
+
+<div mat-dialog-content>
+
+  <div fxLayout="column" fxLayoutGap="20">
+
+    <span>Czy na pewno chcesz usunąć ten element?</span>
+
+    <div fxLayout="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10"
+         fxLayoutAlign="center center" fxLayoutAlign.xs="start">
+      <button type="submit" mat-button mat-raised-button color="warn" fxFlex="100" [mat-dialog-close]="true">Usuń</button>
+      <button type="button" mat-button mat-stroked-button color="primary" fxFlex="100" [mat-dialog-close]="false">Anuluj</button>
+    </div>
+
+  </div>
+
+</div>
+
