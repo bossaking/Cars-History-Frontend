@@ -1,0 +1,35 @@
+<div fxLayout="column" fxLayoutGap="10">
+
+  <div *ngFor="let fuelType of fuelTypes">
+    <ng-container [ngTemplateOutlet]="fuelTypeCard" [ngTemplateOutletContext]="{fuelType:fuelType}"></ng-container>
+  </div>
+
+  <div>
+    <button mat-button mat-raised-button color="primary" fxFlex="20" fxFlex.xs="100">Dodaj nowy</button>
+  </div>
+
+</div>
+
+<ng-template #fuelTypeCard let-fuelType='fuelType'>
+
+  <div class="card" fxLayout="row">
+
+    <div fxLayout fxLayoutAlign="start center" fxFlex="100">
+      <span class="name">{{fuelType.name}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end" fxFlex="100">
+
+      <button mat-icon-button>
+      <mat-icon color="primary">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+</ng-template>

@@ -20,11 +20,16 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatchPasswordDirective} from "./shared/match-password.directive";
 import {NgxSpinnerModule} from "ngx-spinner";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {MatMenuModule} from "@angular/material/menu";
 import { LoginComponent } from './login/login.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UsersComponent } from './users/users.component';
+import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
+import { ManufacturersComponent } from './manufacturers/manufacturers.component';
+import { FuelTypesComponent } from './fuel-types/fuel-types.component';
+import {AuthInterceptorService} from "./services/interceptors/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     RegistrationComponent,
     MatchPasswordDirective,
     LoginComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UsersComponent,
+    RegistrationRequestsComponent,
+    ManufacturersComponent,
+    FuelTypesComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,28 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     RouterModule.forRoot([
       {path: 'register', component: RegistrationComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'admin', component: AdminPanelComponent}
+      {
+        path: 'admin',
+        component: AdminPanelComponent,
+        children: [
+          {
+            path: 'users',
+            component: UsersComponent
+          },
+          {
+            path: 'registration-requests',
+            component: RegistrationRequestsComponent
+          },
+          {
+            path: 'manufacturers',
+            component: ManufacturersComponent
+          },
+          {
+            path: 'fuel-types',
+            component: FuelTypesComponent
+          }
+        ]
+      }
     ]),
     MatInputModule,
     MatButtonModule,
@@ -63,7 +93,9 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     }),
     MatMenuModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,5 +1,37 @@
+.links-container{
+
+}
+
+.content{
+
+}
+
+@media only screen and (max-width: 599px){
+  .nav-link a{
+    text-align: center;
+  }
+}
 
 
-.container{
+
+.nav-link a{
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Alatsi', sans-serif;
   width: 100%;
+  padding: .4rem;
+  border-radius: 2px;
+}
+
+.nav-link a:hover{
+  color: #0a9393;
+}
+
+.menu-link{
+  color: #2b363d;
+}
+
+.selected-link{
+  color: #0a9393;
+  background-color: rgba(206, 213, 218, 0.3);
 }

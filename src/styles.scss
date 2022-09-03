@@ -3,10 +3,25 @@
 @import '~ngx-toastr/toastr';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0; background-color: aliceblue;}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 0;
+  background-color: aliceblue;
+}
 
 a{
   text-decoration: none;
   padding: 0;
   margin: 0;
+}
+
+.card{
+  box-shadow:
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.012),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.018),
+    100px 100px 80px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: white;
 }

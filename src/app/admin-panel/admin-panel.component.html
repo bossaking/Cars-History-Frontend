@@ -1,28 +1,38 @@
-<div class="container" fxFlex="100" fxLayout="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10">
+<div class="container" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
 
-  <div  fxLayout="column" fxLayoutGap="10">
+  <div fxFlex="80" fxFlex.lg="80" fxFlex.md="90" fxFlex.sm="100" fxFlex.xs="100" fxLayout="row" fxLayout.lg="row"
+       fxLayout.md="row" fxLayout.sm="column"
+       fxLayout.xs="column" fxLayoutGap="10">
 
-    <div class="nav-link">
-      <a>Uytkownicy</a>
+    <div fxFlex="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="100" fxFlex.xs="100">
+      <div fxLayout="column" fxLayout.lg="column" fxLayout.md="column" fxLayout.sm="row" fxLayout.xs="column"
+           fxLayoutGap="10" fxLayoutGap.lg="10" fxLayoutGap.md="10" fxLayoutGap.sm="10" fxLayoutGap.xs="10"
+           class="links-container card">
+        <div class="nav-link" fxLayout>
+          <a routerLink="users" routerLinkActive [routerLinkActiveOptions]="{exact:true}" #users="routerLinkActive"
+             [ngClass]="users.isActive ? 'selected-link' : 'menu-link'">Użytkownicy</a>
+        </div>
+
+        <div class="nav-link" fxLayout>
+          <a routerLink="registration-requests" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+             #requests="routerLinkActive" [ngClass]="requests.isActive ? 'selected-link' : 'menu-link'">Wnioski</a>
+        </div>
+
+        <div class="nav-link" fxLayout>
+          <a routerLink="manufacturers" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+             #manufacturers="routerLinkActive" [ngClass]="manufacturers.isActive ? 'selected-link' : 'menu-link'">Producenci</a>
+        </div>
+
+        <div class="nav-link" fxLayout>
+          <a routerLink="fuel-types" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+             #fuelTypes="routerLinkActive" [ngClass]="fuelTypes.isActive ? 'selected-link' : 'menu-link'">Rodzaje
+            paliw</a>
+        </div>
+      </div>
     </div>
 
-    <div class="nav-link">
-      <a>Wnioski</a>
-    </div>
-
-    <div class="nav-link">
-      <a>Producenci</a>
-    </div>
-
-    <div class="nav-link">
-      <a>Rodzaje paliw</a>
-    </div>
-
-  </div>
-
-  <div >
-    <div class="content">
-      Content
+    <div class="content" fxFlex="100">
+      <router-outlet></router-outlet>
     </div>
   </div>
 
