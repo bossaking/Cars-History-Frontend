@@ -22,6 +22,12 @@
   </div>
 
   <mat-menu #menu="matMenu">
+
+    <button *ngIf="authService.isAdmin()" mat-menu-item (click)="admin()">
+      <mat-icon>dashboard</mat-icon>
+      <span>Panel administratora</span>
+    </button>
+
     <button mat-menu-item (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
       <span>Wyloguj</span>

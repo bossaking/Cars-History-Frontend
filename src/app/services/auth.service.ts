@@ -92,4 +92,26 @@ export class AuthService extends Service {
       })
     );
   }
+
+  isOwner():boolean{
+    let user = this.getUser();
+    if(user === null) return false;
+
+    return user.roles.filter(r => r.name === "OWNER").length !== 0;
+  }
+
+  isAdmin():boolean{
+    let user = this.getUser();
+    if(user === null) return false;
+
+    return user.roles.filter(r => r.name === "ADMIN").length !== 0;
+  }
+
+  isMechanic():boolean{
+    let user = this.getUser();
+    if(user === null) return false;
+
+    return user.roles.filter(r => r.name === "MECHANIC").length !== 0;
+  }
+
 }

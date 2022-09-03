@@ -1,11 +1,11 @@
-<div fxLayout="column" fxLayoutGap="10">
+<div fxLayout="column" fxLayoutGap="10" fxFlexAlign="center center" fxLayoutAlign="center center">
 
   <ng-template [ngIf]="mechanicRegistered" [ngIfThen]="registered" [ngIfElse]="form"></ng-template>
 
 </div>
 
 <ng-template #form>
-  <div fxLayout="row">
+  <div fxLayout="row" fxFlexAlign="center center">
     <div class="card">
       <mat-tab-group mat-stretch-tabs dynamicHeight disableRipple color="warn">
 

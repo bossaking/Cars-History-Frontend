@@ -18,7 +18,7 @@ import {MatStepper} from "@angular/material/stepper";
 export class RegistrationComponent implements OnInit {
 
 
-  mechanicRegistered = true;
+  mechanicRegistered = false;
 
   hide = true;
   hideRepeat = true;
@@ -156,6 +156,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     this.authService.registerMechanic(data).subscribe(result => {
+
       if (result === "The email has already been taken.") {
         this.mechanicForm.controls['email'].setErrors({'taken': true});
         this.goBack();

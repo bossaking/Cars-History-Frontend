@@ -24,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {MatMenuModule} from "@angular/material/menu";
 import { LoginComponent } from './login/login.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     RegistrationComponent,
     MatchPasswordDirective,
-    LoginComponent
+    LoginComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { LoginComponent } from './login/login.component';
     MatFormFieldModule,
     RouterModule.forRoot([
       {path: 'register', component: RegistrationComponent},
-      {path: 'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      {path: 'admin', component: AdminPanelComponent}
     ]),
     MatInputModule,
     MatButtonModule,
