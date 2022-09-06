@@ -1,0 +1,54 @@
+<div fxLayout="column" fxLayoutGap="10">
+
+  <div class="card" fxLayout="row" fxLayoutAlign="start center">
+
+
+    <form class="form-area" fxLayout="row" [formGroup]="carNameForm" fxLayoutGap="10" fxFlex="100" (ngSubmit)="saveNameChanges()">
+
+      <mat-form-field appearance="standard" fxFlex="100">
+        <input matInput #carName placeholder="{{manufacturer?.name}}"
+               class="car-name" required formControlName="name">
+        <mat-error *ngIf="carNameForm.controls['name'].errors?.['required']">{{getRequiredErrorMessage()}}</mat-error>
+        <mat-error *ngIf="carNameForm.controls['name'].errors?.['taken']">{{getTakenNameError()}}</mat-error>
+      </mat-form-field>
+
+      <div fxLayoutGap="10" fxLayoutAlign="center center">
+
+        <ng-container *ngIf="editMode;then twoButtons; else button"></ng-container>
+
+      </div>
+
+    </form>
+
+
+  </div>
+
+  <div fxLayout fxLayoutAlign="center center">
+    <span class="models-span">Modele ({{manufacturer?.carModels?.length}}):</span>
+  </div>
+
+  <div *ngFor="let model of manufacturer?.carModels">
+    <app-car-model [model]="model" (deleted)="carModelDeleted($event)" (updated)="carModelUpdated($event)"></app-car-model>
+  </div>
+
+  <div>
+    <button mat-button mat-raised-button color="primary" fxFlex="20" fxFlex.xs="100" (click)="newModel()">Dodaj nowy model</button>
+  </div>
+
+</div>
+
+<ng-template #twoButtons>
+
+  <button mat-raised-button color="primary" type="submit">Zapisz</button>
+
+  <button mat-stroked-button color="warn" (click)="switchEditMode()" type="button">Anuluj</button>
+
+</ng-template>
+
+<ng-template #button>
+
+  <button mat-icon-button class="edit-button" (click)="switchEditMode()">
+    <mat-icon color="primary">edit</mat-icon>
+  </button>
+
+</ng-template>

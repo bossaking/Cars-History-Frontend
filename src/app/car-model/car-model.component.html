@@ -1,0 +1,19 @@
+<div class="card" fxLayout="row">
+
+  <div fxLayout fxLayoutAlign="start center" fxFlex="100">
+    <span class="model-name" >{{model?.name}}</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxFlex="100">
+
+    <button mat-icon-button (click)="edit()">
+      <mat-icon color="primary">edit</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="remove()">
+      <mat-icon color="warn">delete</mat-icon>
+    </button>
+
+  </div>
+
+</div>

@@ -34,6 +34,12 @@ import { NewFuelTypeDialogComponent } from './new-fuel-type-dialog/new-fuel-type
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 import { EditFuelTypeDialogComponent } from './edit-fuel-type-dialog/edit-fuel-type-dialog.component';
+import {NewManufacturerDialogComponent} from "./new-manufacturer-dialog/new-manufacturer-dialog.component";
+import { EditManufacturerComponent } from './edit-manufacturer/edit-manufacturer.component';
+import { CarModelComponent } from './car-model/car-model.component';
+import { NewCarModelDialogComponent } from './new-car-model-dialog/new-car-model-dialog.component';
+import { EditCarModelDialogComponent } from './edit-car-model-dialog/edit-car-model-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +55,12 @@ import { EditFuelTypeDialogComponent } from './edit-fuel-type-dialog/edit-fuel-t
     FuelTypesComponent,
     NewFuelTypeDialogComponent,
     ConfirmDeleteDialogComponent,
-    EditFuelTypeDialogComponent
+    EditFuelTypeDialogComponent,
+    NewManufacturerDialogComponent,
+    EditManufacturerComponent,
+    CarModelComponent,
+    NewCarModelDialogComponent,
+    EditCarModelDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +90,10 @@ import { EditFuelTypeDialogComponent } from './edit-fuel-type-dialog/edit-fuel-t
           {
             path: 'manufacturers',
             component: ManufacturersComponent
+          },
+          {
+            path: 'manufacturers/:id',
+            component: EditManufacturerComponent
           },
           {
             path: 'fuel-types',

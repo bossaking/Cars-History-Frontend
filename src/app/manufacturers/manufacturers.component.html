@@ -1,1 +1,36 @@
-<p>manufacturers works!</p>
+<div fxLayout="column" fxLayoutGap="10">
+
+  <div *ngFor="let manufacturer of manufacturers">
+    <ng-container [ngTemplateOutlet]="manufacturerCard" [ngTemplateOutletContext]="{manufacturer:manufacturer}"></ng-container>
+  </div>
+
+  <div>
+    <button mat-button mat-raised-button color="primary" fxFlex="20" fxFlex.xs="100" (click)="newManufacturer()">Dodaj nowy</button>
+  </div>
+
+</div>
+
+<ng-template #manufacturerCard let-manufacturer='manufacturer'>
+
+  <div class="card manufacturer-panel" fxLayout="row" (click)="showMore(manufacturer.id)">
+
+    <div fxLayout="column" fxLayoutAlign="center start" fxFlex="100">
+      <span class="name">{{manufacturer.name}}</span>
+      <span class="models-count">Liczba modeli: {{manufacturer.modelsCount}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end" fxFlex="100">
+
+      <button mat-icon-button (click)="showMore(manufacturer.id)">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="removeManufacturer(manufacturer.id)">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+</ng-template>
