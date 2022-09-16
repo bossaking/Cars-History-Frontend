@@ -8,25 +8,43 @@
       <div fxLayout="column" fxLayout.lg="column" fxLayout.md="column" fxLayout.sm="row" fxLayout.xs="column"
            fxLayoutGap="10" fxLayoutGap.lg="10" fxLayoutGap.md="10" fxLayoutGap.sm="10" fxLayoutGap.xs="10"
            class="links-container card">
+
         <div class="nav-link" fxLayout>
-          <a routerLink="users" routerLinkActive [routerLinkActiveOptions]="{exact:true}" #users="routerLinkActive"
-             [ngClass]="users.isActive ? 'selected-link' : 'menu-link'">Użytkownicy</a>
+
+          <div class="link" routerLink="users" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+               #users="routerLinkActive"
+               [ngClass]="users.isActive ? 'selected-link' : 'menu-link'">
+            <a>Użytkownicy</a>
+          </div>
+
         </div>
 
         <div class="nav-link" fxLayout>
-          <a routerLink="registration-requests" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
-             #requests="routerLinkActive" [ngClass]="requests.isActive ? 'selected-link' : 'menu-link'">Wnioski</a>
+
+          <div class="link" [ngClass]="requests.isActive ? 'selected-link' : 'menu-link'"
+               routerLink="registration-requests" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+               #requests="routerLinkActive">
+            <a matBadge="{{requestsCount}}" matBadgeOverlap="false" matBadgeColor="warn" [matBadgeHidden]="requestsCount <= 0">Wnioski</a>
+          </div>
+
         </div>
 
         <div class="nav-link" fxLayout>
-          <a routerLink="manufacturers" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
-             #manufacturers="routerLinkActive" [ngClass]="manufacturers.isActive ? 'selected-link' : 'menu-link'">Producenci</a>
+
+          <div class="link" routerLink="manufacturers" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+               #manufacturers="routerLinkActive" [ngClass]="manufacturers.isActive ? 'selected-link' : 'menu-link'">
+            <a>Producenci</a>
+          </div>
+
         </div>
 
         <div class="nav-link" fxLayout>
-          <a routerLink="fuel-types" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
-             #fuelTypes="routerLinkActive" [ngClass]="fuelTypes.isActive ? 'selected-link' : 'menu-link'">Rodzaje
-            paliw</a>
+          <div class="link" routerLink="fuel-types" routerLinkActive [routerLinkActiveOptions]="{exact:true}"
+               #fuelTypes="routerLinkActive" [ngClass]="fuelTypes.isActive ? 'selected-link' : 'menu-link'">
+            <a>Rodzaje
+              paliw</a>
+          </div>
+
         </div>
       </div>
     </div>

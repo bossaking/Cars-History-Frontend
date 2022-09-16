@@ -39,6 +39,7 @@ import { EditManufacturerComponent } from './edit-manufacturer/edit-manufacturer
 import { CarModelComponent } from './car-model/car-model.component';
 import { NewCarModelDialogComponent } from './new-car-model-dialog/new-car-model-dialog.component';
 import { EditCarModelDialogComponent } from './edit-car-model-dialog/edit-car-model-dialog.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { EditCarModelDialogComponent } from './edit-car-model-dialog/edit-car-mo
       preventDuplicates: true,
     }),
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

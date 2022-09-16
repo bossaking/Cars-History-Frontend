@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {UsersService} from "../services/users.service";
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,7 +10,10 @@ import {filter} from "rxjs";
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  requestsCount: number = 0;
+
+  constructor(private router: Router, private usersService: UsersService) {
+  }
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -21,6 +25,11 @@ export class AdminPanelComponent implements OnInit {
         }
       }
     });
+
+    this.usersService.requestsCount().subscribe(result => {
+      this.requestsCount = result.usersCount;
+    });
+
   }
 
 }
